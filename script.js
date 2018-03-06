@@ -381,6 +381,31 @@ jQuery(function ($) {
     });
 });
 
+
+/* Icons in Header should have display block.
+ * Otherwise, in case of inline-block there's a space gap in some browsers (Opera 12.16) and icon is cutted.
+ */
+if (browser.opera) {
+    jQuery(function ($) {
+        $(".art-header a[class$='tag-icon']").css("display", "block");
+    });
+}
+
+jQuery(function($) {
+    "use strict";
+     $(window).bind("resize", function () {
+        /*global responsiveDesign */
+        "use strict";
+        if (typeof responsiveDesign !== "undefined" && responsiveDesign.isResponsive)
+            return;
+        var sheetLeft = $(".art-sheet").offset().left;
+        $("header.art-header #art-flash-area").each(function () {
+            var object = $(this);
+            object.css("left", sheetLeft + "px");
+        });
+    });
+});
+
 jQuery(function($) {
     "use strict";
     $('nav.art-nav').addClass("desktop-nav");
@@ -482,55 +507,9 @@ var setHMenuOpenDirection = (function ($) {
     });
 })(jQuery);
 
-jQuery(function ($) {
-    $("ul.art-hmenu ul li").hover(function () { $(this).prev().children("a").addClass("art-hmenu-before-hovered"); }, 
-        function () { $(this).prev().children("a").removeClass("art-hmenu-before-hovered"); });
-});
-
-
-/* Icons in Header should have display block.
- * Otherwise, in case of inline-block there's a space gap in some browsers (Opera 12.16) and icon is cutted.
- */
-if (browser.opera) {
-    jQuery(function ($) {
-        $(".art-header a[class$='tag-icon']").css("display", "block");
-    });
-}
-
-jQuery(function($) {
-    "use strict";
-     $(window).bind("resize", function () {
-        /*global responsiveDesign */
-        "use strict";
-        if (typeof responsiveDesign !== "undefined" && responsiveDesign.isResponsive)
-            return;
-        var sheetLeft = $(".art-sheet").offset().left;
-        $("header.art-header #art-flash-area").each(function () {
-            var object = $(this);
-            object.css("left", sheetLeft + "px");
-        });
-    });
-});
 
 jQuery(function ($) {
     'use strict';
-    $(window).bind('resize', function () {
-        var bh = $('body').height();
-        var mh = 0;
-        var c = $('div.art-content');
-        c.removeAttr('style');
-
-        $('#art-main').children().each(function() {
-            if ($(this).css('position') !== 'absolute') {
-                mh += $(this).outerHeight(true);
-            }
-        });
-        
-        if (mh < bh) {
-            var r = bh - mh;
-            c.css('height', (c.parent().outerHeight(true) + r) + 'px');
-        }
-    });
 
     if (browser.ie && browser.version < 8) {
         $(window).bind('resize', function() {
@@ -1182,89 +1161,147 @@ jQuery(function () {
 
 
 if (typeof window.resizeData === 'undefined') window.resizeData = {};
-window.resizeData.headerPageWidth = true;
+window.resizeData.headerPageWidth = false;
 if (typeof window.defaultResponsiveData === 'undefined') window.defaultResponsiveData = [false, true, true, true, true, ];
-
-resizeData['object1459323491'] = {
-   responsive: [
-                  { left: -0.13, top: -0.08, visible: true }, 
-                  { left: -0.13, top: -0.08, visible: true }, 
-                  { left: -0.13, top: -0.08, visible: true }, 
-                  { left: -0.13, top: -0.08, visible: true }, 
-                  { left: -0.13, top: -0.08, visible: true }, 
-               ],
-   area: {
-       x: 0,
-       y: 0
-   },
-   width: 1218,
-   height: 811,
-   autoWidth: false};
-
-resizeData['object173948530'] = {
-   responsive: [
-                  { left: 1, top: -0.17, visible: true }, 
-                  { left: 1, top: -0.17, visible: true }, 
-                  { left: 1, top: -0.17, visible: true }, 
-                  { left: 1, top: -0.17, visible: true }, 
-                  { left: 1, top: -0.17, visible: true }, 
-               ],
-   area: {
-       x: 0,
-       y: 0
-   },
-   width: 564,
-   height: 564,
-   autoWidth: false};
-
-resizeData['object554312304'] = {
-   responsive: [
-                  { left: -0.34, top: 0.32, visible: true }, 
-                  { left: -0.34, top: 0.32, visible: true }, 
-                  { left: -0.34, top: 0.32, visible: true }, 
-                  { left: -0.34, top: 0.32, visible: true }, 
-                  { left: -0.34, top: 0.32, visible: true }, 
-               ],
-   area: {
-       x: 0,
-       y: 0
-   },
-   width: 528,
-   height: 115,
-   autoWidth: false};
 
 resizeData['headline'] = {
    responsive: [
-                  { left: -0.36, top: 0.37, visible: true }, 
-                  { left: -0.36, top: 0.37, visible: true }, 
-                  { left: -0.36, top: 0.37, visible: true }, 
-                  { left: -0.36, top: 0.37, visible: true }, 
-                  { left: -0.36, top: 0.37, visible: true }, 
+                  { left: 0.03, top: 0.12, visible: true }, 
+                  { left: 0.03, top: 0.12, visible: true }, 
+                  { left: 0.03, top: 0.12, visible: true }, 
+                  { left: 0.03, top: 0.12, visible: true }, 
+                  { left: 0.03, top: 0.12, visible: true }, 
                ],
    area: {
        x: 0,
        y: 0
    },
-   width: 283,
-   height: 36,
+   width: 324,
+   height: 47,
    autoWidth: true};
 
 resizeData['slogan'] = {
    responsive: [
-                  { left: -0.46, top: 0.48, visible: true }, 
-                  { left: -0.46, top: 0.48, visible: true }, 
-                  { left: -0.46, top: 0.48, visible: true }, 
-                  { left: -0.46, top: 0.48, visible: true }, 
-                  { left: -0.46, top: 0.48, visible: true }, 
+                  { left: 0.03, top: 0.35, visible: true }, 
+                  { left: 0.03, top: 0.35, visible: true }, 
+                  { left: 0.03, top: 0.35, visible: true }, 
+                  { left: 0.03, top: 0.35, visible: true }, 
+                  { left: 0.03, top: 0.35, visible: true }, 
                ],
    area: {
        x: 0,
        y: 0
    },
-   width: 270,
-   height: 18,
+   width: 168,
+   height: 16,
    autoWidth: true};
 
+resizeData['slideheader0-object883686695'] = {
+   responsive: [
+                  { left: -0.02, top: -0.42, visible: true }, 
+                  { left: -0.02, top: -0.42, visible: true }, 
+                  { left: -0.02, top: -0.42, visible: true }, 
+                  { left: -0.02, top: -0.42, visible: true }, 
+                  { left: -0.02, top: -0.42, visible: true }, 
+               ],
+   area: {
+       x: 0,
+       y: 0
+   },
+   width: 847,
+   height: 474,
+   autoWidth: false};
+
+resizeData['slideheader1-object670051581'] = {
+   responsive: [
+                  { left: -0.03, top: -0.21, visible: true }, 
+                  { left: -0.03, top: -0.21, visible: true }, 
+                  { left: -0.03, top: -0.21, visible: true }, 
+                  { left: -0.03, top: -0.21, visible: true }, 
+                  { left: -0.03, top: -0.21, visible: true }, 
+               ],
+   area: {
+       x: 0,
+       y: 0
+   },
+   width: 972,
+   height: 548,
+   autoWidth: false};
+
+resizeData['slideheader2-object1656097497'] = {
+   responsive: [
+                  { left: -0.01, top: -0.33, visible: true }, 
+                  { left: -0.01, top: -0.33, visible: true }, 
+                  { left: -0.01, top: -0.33, visible: true }, 
+                  { left: -0.01, top: -0.33, visible: true }, 
+                  { left: -0.01, top: -0.33, visible: true }, 
+               ],
+   area: {
+       x: 0,
+       y: 0
+   },
+   width: 822,
+   height: 514,
+   autoWidth: false};
+
+jQuery(function ($) {
+    'use strict';
+    if ($.fn.themeSlider) {
+        $(".art-slidecontainerheader").each(function () {
+            var slideContainer = $(this), tmp;
+            var inner = $(".art-slider-inner", slideContainer);
+            inner.children().filter("script").remove();
+            var helper = null;
+            
+            if ($.support.themeTransition) {
+                helper = new BackgroundHelper();
+                helper.init("fade", "next", $(".art-slide-item", inner).first().css($.support.themeTransition.prefix + "transition-duration"));
+                inner.children().each(function () {
+                    helper.processSlide($(this));
+                });
+
+                
+            } else if (browser.ie && browser.version <= 8) {
+                var slidesInfo = {
+".art-slideheader0": {
+    "bgimage" : "url('images/slideheader0.png')",
+    "bgposition": "0 0",
+    "images": "url('images/slideheader0-object883686695.png'), ",
+    "positions": "-20px -198px, "
+},
+".art-slideheader1": {
+    "bgimage" : "url('images/slideheader1.png')",
+    "bgposition": "0 0",
+    "images": "url('images/slideheader1-object670051581.png'), ",
+    "positions": "-31px -117px, "
+},
+".art-slideheader2": {
+    "bgimage" : "url('images/slideheader2.png')",
+    "bgposition": "0 0",
+    "images": "url('images/slideheader2-object1656097497.png'), ",
+    "positions": "-6px -172px, "
+}
+                };
+                $.each(slidesInfo, function(selector, info) {
+                    processElementMultiplyBg(slideContainer.find(selector), info);
+                });
+            }
+
+            inner.children().eq(0).addClass("active");
+            slideContainer.themeSlider({
+                pause: 2600,
+                speed: 600,
+                repeat: true,
+                animation: "fade",
+                direction: "next",
+                navigator: slideContainer.siblings(".art-slidenavigatorheader"),
+                helper: helper
+            });
+            
+                        
+        });
+    }
+});
 // used to apply compicated values in style like '!important!
 function applyCss(object, param, value) {
     var rg = new RegExp(param + '\s*:\s*[^;]+;', "i");
@@ -1510,8 +1547,8 @@ jQuery(function ($) {
     if (!browser.ie || browser.version > 8)
         return;
     processElementMultiplyBg(".art-header", {
-        "bgimage": "url('images/header.jpg')",
-        "bgposition": "center top",
+        "bgimage": "none",
+        "bgposition": "0 0",
         "images": "",
         "positions": ""
     });
